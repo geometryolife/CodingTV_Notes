@@ -5,16 +5,20 @@
     <style>
         body {
             text-align: center;
-            padding: 50px 0;
+            padding: 100px 0 0;
             background-color: hsl(120, 70%, 60%);
+            font-size: 60px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
         #timer {
             margin-top: 20px;
+            font-family: monospace;
             /* color: red; */
             /* color: hsl(120, 50%, 50%); */
         }
         #tiger {
             cursor: pointer;
+            margin-top: 40px;
         }
         #fox {
             cursor: pointer;
@@ -23,20 +27,21 @@
 </head>
 <!-- 内容 -->
 <body id="body">
-    <div id="tiger">
-        🐯
-    </div>
-    <div id="fox">
-        🦊
-    </div>
     <div id="title">
         Coding TV - Timer
     </div>
     <div id="timer">
         20:00
     </div>
+    <div id="tiger">
+        🐯
+    </div>
+    <div id="fox">
+        🦊
+    </div>
     <script>
         let interval
+        let isRunning = false
 
         function process() {
         // 获取元素
@@ -50,6 +55,7 @@
 
         if (seconds === 0 && minutes === 0) {
             clearInterval(interval)
+            isRunning = false
         } else if (seconds === 0) {
             seconds = 59
             minutes = minutes - 1
@@ -71,7 +77,7 @@
         }
 
         timerElement.innerHTML = minutes + ":" +seconds
-        // timerElement.style.color = `hsl(${h}, 50%, 50%)`
+        // timerElement.style.color = jhsl(${h}, 50%, 50%)`
         document.getElementById("body").style.backgroundColor = `hsl(${h}, 70%, 60%)`
         }
 
@@ -80,12 +86,26 @@
 
         // 点击老虎开始计时
         document.getElementById("tiger").onclick = function() {
-            interval = setInterval(process, 100)
+            if (isRunning === true) {
+                clearInterval(interval)
+                isRunning = false
+            } else {
+                interval = setInterval(process, 100)
+                isRunning = true
+            }
         }
 
         // 点击狐狸停止计时
+        // document.getElementById("fox").onclick = function() {
+        //     clearInterval(interval)
+        // }
+
         document.getElementById("fox").onclick = function() {
-            clearInterval(interval)
+            if (isRunning === true) {
+                clearInterval(interval)
+                isRunning = false
+            }
+            document.getElementById("timer").innerHTML = "20:00"
         }
     </script>
 </body>
