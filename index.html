@@ -6,11 +6,12 @@
         body {
             text-align: center;
             padding: 50px 0;
+            background-color: hsl(120, 70%, 60%);
         }
         #timer {
             margin-top: 20px;
             /* color: red; */
-            color: hsl(120, 50%, 50%);
+            /* color: hsl(120, 50%, 50%); */
         }
         #tiger {
             cursor: pointer;
@@ -21,7 +22,7 @@
     </style>
 </head>
 <!-- 内容 -->
-<body>
+<body id="body">
     <div id="tiger">
         🐯
     </div>
@@ -70,8 +71,8 @@
         }
 
         timerElement.innerHTML = minutes + ":" +seconds
-        console.log(`hsl(${h}, 50%, 50%);`)
-        timerElement.style.color = `hsl(${h}, 50%, 50%)`
+        // timerElement.style.color = `hsl(${h}, 50%, 50%)`
+        document.getElementById("body").style.backgroundColor = `hsl(${h}, 70%, 60%)`
         }
 
         // 每一秒执行一次 process 函数
