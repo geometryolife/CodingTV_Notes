@@ -1,0 +1,46 @@
+<head>
+    <!-- 定义标题 -->
+    <title>Coding TV Episode 1 - Timer</title>
+</head>
+<!-- 内容 -->
+<body>
+    <div id="timer">
+        10:00
+    </div>
+    <script>
+        let interval
+
+        function process() {
+        // 获取元素
+        const timerElement = document.getElementById("timer")
+        // console.log(timerElement) // 控制台打印
+        // timerElement.innerHTML = "09:59" // 修改
+        const currentTime = timerElement.innerHTML
+
+        let minutes = currentTime.split(":")[0]
+        let seconds = currentTime.split(":")[1]
+
+        if (parseInt(seconds) === 0 && parseInt(minutes) === 0) {
+            clearInterval(interval)
+        } else if (parseInt(seconds) === 0) {
+            seconds = 59
+            minutes = minutes - 1
+        } else {
+            seconds = seconds - 1
+        }
+
+        if (parseInt(minutes) < 10) {
+            console.log(minutes)
+            minutes = "0" + parseInt(minutes)
+        }
+        if (parseInt(seconds) < 10) {
+            seconds = "0" + parseInt(seconds)
+        }
+
+        timerElement.innerHTML = minutes + ":" +seconds
+        }
+
+        // 每一秒执行一次 process 函数
+        interval = setInterval(process, 100)
+    </script>
+</body>
