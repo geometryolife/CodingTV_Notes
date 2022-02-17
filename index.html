@@ -17,24 +17,24 @@
         // timerElement.innerHTML = "09:59" // 修改
         const currentTime = timerElement.innerHTML
 
-        let minutes = currentTime.split(":")[0]
-        let seconds = currentTime.split(":")[1]
+        let minutes = parseInt(currentTime.split(":")[0])
+        let seconds = parseInt(currentTime.split(":")[1])
 
-        if (parseInt(seconds) === 0 && parseInt(minutes) === 0) {
+        if (seconds === 0 && minutes === 0) {
             clearInterval(interval)
-        } else if (parseInt(seconds) === 0) {
+        } else if (seconds === 0) {
             seconds = 59
             minutes = minutes - 1
         } else {
             seconds = seconds - 1
         }
 
-        if (parseInt(minutes) < 10) {
+        if (minutes < 10) {
             console.log(minutes)
-            minutes = "0" + parseInt(minutes)
+            minutes = "0" + minutes
         }
-        if (parseInt(seconds) < 10) {
-            seconds = "0" + parseInt(seconds)
+        if (seconds < 10) {
+            seconds = "0" + seconds
         }
 
         timerElement.innerHTML = minutes + ":" +seconds
