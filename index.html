@@ -1,11 +1,38 @@
 <head>
     <!-- 定义标题 -->
     <title>Coding TV Episode 1 - Timer</title>
+    <!-- 使用 CSS 来修改样式 -->
+    <style>
+        body {
+            text-align: center;
+            padding: 50px 0;
+        }
+        #timer {
+            margin-top: 20px;
+            /* color: red; */
+            color: hsl(120, 50%, 50%);
+        }
+        #tiger {
+            cursor: pointer;
+        }
+        #fox {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <!-- 内容 -->
 <body>
+    <div id="tiger">
+        🐯
+    </div>
+    <div id="fox">
+        🦊
+    </div>
+    <div id="title">
+        Coding TV - Timer
+    </div>
     <div id="timer">
-        10:00
+        20:00
     </div>
     <script>
         let interval
@@ -29,18 +56,35 @@
             seconds = seconds - 1
         }
 
+        const totalSeconds = 20 * 60
+        const totalSecondsLeft = minutes * 60 + seconds
+        const h = (totalSecondsLeft / totalSeconds) * 120
+        
         if (minutes < 10) {
             console.log(minutes)
             minutes = "0" + minutes
         }
+
         if (seconds < 10) {
             seconds = "0" + seconds
         }
 
         timerElement.innerHTML = minutes + ":" +seconds
+        console.log(`hsl(${h}, 50%, 50%);`)
+        timerElement.style.color = `hsl(${h}, 50%, 50%)`
         }
 
         // 每一秒执行一次 process 函数
-        interval = setInterval(process, 100)
+        // interval = setInterval(process, 1000)
+
+        // 点击老虎开始计时
+        document.getElementById("tiger").onclick = function() {
+            interval = setInterval(process, 100)
+        }
+
+        // 点击狐狸停止计时
+        document.getElementById("fox").onclick = function() {
+            clearInterval(interval)
+        }
     </script>
 </body>
